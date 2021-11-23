@@ -12,16 +12,14 @@ export class NovaTransferenciaComponent {
 
     @Output() aoTransferir = new EventEmitter<any>();
 
-    Transferir() {
-        console.log('Nova transferencia realizada');
-
+    transferir() {
         const transferencia = {valor: this.valor, destino: this.destino};
         this.aoTransferir.emit(transferencia);
 
-        this.LimpaCampos();
+        this.limpaCampos();
     }
 
-    LimpaCampos() {
+    limpaCampos() {
         this.valor = null;
         this.destino = null;
     }

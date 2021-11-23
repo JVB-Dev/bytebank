@@ -6,7 +6,7 @@
             <th class="tabela__cabecalho__conteudo">Destino</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="transferencias?.length > 0; else semTransferencia">
         <tr *ngFor="let transferencia of transferencias" class="tabela__linha">
             <td class="tabela__conteudo">{{transferencia.data | date: 'short'}}</td>
             <td class="tabela__conteudo">{{transferencia.valor | currency: 'BRL'}}</td>
@@ -15,3 +15,6 @@
     </tbody>
 </table>
 
+<ng-template #semTransferencia>
+    <p>Não há transferências feitas até o momento!</p>
+</ng-template>
