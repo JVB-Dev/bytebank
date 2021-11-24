@@ -1,10 +1,19 @@
+<header>
+    <a routerLink="/extrato">ByteBank</a>
+    <a routerLink="/nova-transferencia" routerLinkActive="ativo">Nova Transferência</a>
+</header>
+<main>
+    <router-outlet></router-outlet>
+</main>
 
 <!-- 
     (aoTransferir)="Transferir($event)" quer dizer que o angular vai monitorar a variavel aoTransferir 
     quando tiver alteração ela vai chamar o método Transferir() passando o $event como parametro, 
     onde contem as informações do emit() 
+    
+    <app-nova-transferencia (aoTransferir)="transferir($event)"></app-nova-transferencia>
 -->
-<app-nova-transferencia (aoTransferir)="transferir($event)"></app-nova-transferencia>
+<!-- <app-nova-transferencia></app-nova-transferencia> -->
 
 <!-- 
     [transferencias]="transferencias" quer dizer que quando a variavel transferencias for modificada 
@@ -12,5 +21,5 @@
 
     <app-extrato [transferencias]="transferencias"></app-extrato>
 -->
-<app-extrato></app-extrato>
+<!-- <app-extrato></app-extrato> -->
 

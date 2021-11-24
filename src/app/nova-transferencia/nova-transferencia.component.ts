@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Output } from "@angular/core";
+import { Router } from "@angular/router";
+import { Transferencia } from "../models/transferencia";
+import { TransferenciaService } from "../services/transferencia.service";
 
 @Component({
     selector: 'app-nova-transferencia',
@@ -10,13 +13,27 @@ export class NovaTransferenciaComponent {
     valor: number;
     destino: number;
 
-    @Output() aoTransferir = new EventEmitter<any>();
+    // cria o evento de emissão do componente filho para o componente pai
+    // @Output() aoTransferir = new EventEmitter<Transferencia>();
 
+    constructor(private transferenciaService: TransferenciaService,
+                private router: Router) {}
+    
     transferir() {
-        const transferencia = {valor: this.valor, destino: this.destino};
-        this.aoTransferir.emit(transferencia);
+        const transferencia: Transferencia = {
+            valor: this.valor,
+            destino: `${this.destino}`
+        };
 
-        this.limpaCampos();
+        // emite o evento retornando a variavel transferencia
+        // this.aoTransferir.emit(transferencia);
+        
+        this.transferenciaService.adicionar(transferencia).subscribe(res => {
+            console.log(res);
+            this.limpaCampos();
+            this.router.navigateByUrl('extrato');
+        },
+        error => console.error(error));
     }
 
     limpaCampos() {
